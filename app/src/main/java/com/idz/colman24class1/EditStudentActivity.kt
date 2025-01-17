@@ -45,6 +45,7 @@ class EditStudentActivity : AppCompatActivity() {
         checkbox.isChecked = currStudent?.isChecked ?: false
 
         val saveButton = findViewById<Button>(R.id.edit_student_save_button)
+        val deleteButton = findViewById<Button>(R.id.edit_student_delete_button)
         val cancelButton = findViewById<Button>(R.id.edit_student_cancel_button)
 
         saveButton.setOnClickListener {
@@ -54,6 +55,11 @@ class EditStudentActivity : AppCompatActivity() {
             intent.putExtra("studentId", studentId)
             startActivity(intent)
         }
+
+        deleteButton.setOnClickListener{
+            Model.shared.students.removeAt(studentId)
+            val intent = Intent(this, StudentsRecyclerViewActivity::class.java)
+            startActivity(intent)        }
 
         cancelButton.setOnClickListener {
             val intent = Intent(this, StudentDetailsActivity::class.java)

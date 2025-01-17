@@ -11,7 +11,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.idz.colman24class1.model.Model
 import com.idz.colman24class1.model.Student
-import com.idz.colman24class1.StudentsRecyclerViewActivity
 
 class StudentDetailsActivity : AppCompatActivity() {
 
@@ -26,13 +25,13 @@ class StudentDetailsActivity : AppCompatActivity() {
         }
 
         val studentId = intent.getIntExtra("studentId", 0)
-        var currentStudent : Student? = null
+        var currStudent : Student? = null
 
         studentId.let {
-            currentStudent = Model.shared.students.get(studentId)
+            currStudent = Model.shared.students.get(studentId)
         }
 
-        print(currentStudent)
+        print(currStudent)
 
         val nameText = findViewById<TextView>(R.id.student_details_name_text)
         val idText = findViewById<TextView>(R.id.student_details_id_text)
@@ -40,11 +39,11 @@ class StudentDetailsActivity : AppCompatActivity() {
         val addressText = findViewById<TextView>(R.id.student_details_address_text)
         val checkbox = findViewById<CheckBox>(R.id.student_details_checkbox)
 
-        nameText.text = currentStudent?.name
-        idText.text = currentStudent?.id
-        phoneText.text = currentStudent?.phoneNumber
-        addressText.text = currentStudent?.address
-        checkbox.isChecked = currentStudent?.isChecked ?: false
+        nameText.text = currStudent?.name
+        idText.text = currStudent?.id
+        phoneText.text = currStudent?.phoneNumber
+        addressText.text = currStudent?.address
+        checkbox.isChecked = currStudent?.isChecked ?: false
 
         val backButton = findViewById<Button>(R.id.student_details_back_button)
         val editButton = findViewById<Button>(R.id.student_details_edit_button)
@@ -55,7 +54,9 @@ class StudentDetailsActivity : AppCompatActivity() {
         }
 
         editButton.setOnClickListener {
-            // todo - add edit logic
+            val intent = Intent(this, EditStudentActivity::class.java)
+            intent.putExtra("studentId", studentId)
+            startActivity(intent)
         }
 
     }

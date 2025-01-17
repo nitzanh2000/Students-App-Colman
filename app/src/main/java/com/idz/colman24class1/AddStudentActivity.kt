@@ -1,5 +1,6 @@
 package com.idz.colman24class1
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -35,9 +36,9 @@ class AddStudentActivity : AppCompatActivity() {
         }
 
         saveButton.setOnClickListener {
-            val student: Student = Student(nameEditText.text.toString(), idEditText.text.toString(), "", "","", false)
+            val student: Student = Student(nameEditText.text.toString(), idEditText.text.toString(), "", "123456","HAR ADAR", false)
             Model.shared.students.add(student)
-            finish()
-        }
+            val intent = Intent(this, StudentsRecyclerViewActivity::class.java)
+            startActivity(intent)        }
     }
 }
