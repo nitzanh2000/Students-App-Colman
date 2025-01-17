@@ -10,42 +10,23 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
         setContentView(R.layout.activity_main)
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-        // TODO: 1. Button to navigate to Add Student ✅
-        // TODO: 2. Create a button listener
-        // TODO: 3. Create an intent
+        // TODO: Step 1 - Add Student Button ✅
+        // TODO: Step 2 - Navigate to AddStudentActivity
+        // TODO: Step 3 - Create AddStudentLayout
+        // TODO: Step 4 - Save Student
 
-        val addStudentButton: Button = findViewById(R.id.main_activity_add_student_button)
-
-//        class MyListener: View.OnClickListener {
-//            override fun onClick(v: View?) {
-//                TODO("Not yet implemented")
-//            }
-//        }
-//
-//        val listener = MyListener()
-//        addStudentButton.setOnClickListener(listener)
-
-//        addStudentButton.setOnClickListener(object : View.OnClickListener {
-//            override fun onClick(v: View?) {
-//                TODO("Not yet implemented")
-//            }
-//        })
-
+        val addStudentButton: Button = findViewById(R.id.main_acitivity_add_student_button)
         addStudentButton.setOnClickListener {
-
             val intent = Intent(this, AddStudentActivity::class.java)
             startActivity(intent)
         }
