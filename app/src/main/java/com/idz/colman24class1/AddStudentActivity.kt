@@ -8,7 +8,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import java.time.temporal.TemporalField
+import com.idz.colman24class1.model.Model
+import com.idz.colman24class1.model.Student
 
 class AddStudentActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,17 +22,21 @@ class AddStudentActivity : AppCompatActivity() {
             insets
         }
 
-        val saveButton: Button = findViewById(R.id.add_student_save_button)
-        val cancelButton: Button = findViewById(R.id.add_student_cancel_button)
-        val nameTextField: EditText = findViewById(R.id.add_student_name_text_field)
-        val idTextField: EditText = findViewById(R.id.add_student_id_text_field)
-        val savedTextField: TextView = findViewById(R.id.add_student_success_saved_text_view)
+        val saveButton: Button = findViewById(R.id.add_student_activity_save_button)
+        val cancelButton: Button = findViewById(R.id.add_student_activity_cancel_button)
 
-        saveButton.setOnClickListener {
-            savedTextField.text = "${nameTextField.text} ${idTextField.text} is saved...!!!"
-        }
+        val nameEditText: EditText = findViewById(R.id.add_student_activity_name_edit_text)
+        val idEditText: EditText = findViewById(R.id.add_student_activity_id_edit_text)
+
+        val savedMessageTextView: TextView = findViewById(R.id.add_student_activity_save_message_text_view)
 
         cancelButton.setOnClickListener {
+            finish()
+        }
+
+        saveButton.setOnClickListener {
+            val student: Student = Student(nameEditText.text.toString(), idEditText.text.toString(), "", false)
+            Model.shared.students.add(student)
             finish()
         }
     }
