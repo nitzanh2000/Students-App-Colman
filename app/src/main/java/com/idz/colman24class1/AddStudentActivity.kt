@@ -35,7 +35,7 @@ class AddStudentActivity : AppCompatActivity() {
         }
 
         saveButton.setOnClickListener {
-            val student: Student = Student(nameEditText.text.toString(), idEditText.text.toString(), "", false)
+            val student: Student = Student(nameEditText.text.toString(), idEditText.text.toString(), "", "","", false)
             Model.shared.students.add(student)
             finish()
         }
